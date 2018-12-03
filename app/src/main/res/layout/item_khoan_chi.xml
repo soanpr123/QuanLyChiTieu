@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginTop="8dp"
+    android:layout_height="65dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/vien">
+
+        <TextView
+            android:id="@+id/tv_ID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="15dp"
+            android:text="id"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_Sotien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_ID"
+            android:text="Số Tiền : "
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_soTien"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_Sotien"
+            android:text="sssssssss"
+            android:textStyle="bold" />
+
+        <TextView
+
+            android:id="@+id/tvngay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_Sotien"
+            android:layout_toRightOf="@+id/tv_ID"
+            android:text="Ngày Chi : "
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_Ngaychi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_soTien"
+            android:layout_toRightOf="@id/tvngay"
+            android:text="ddđ" />
+
+        <TextView
+
+            android:id="@+id/tvloai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvngay"
+            android:layout_toRightOf="@+id/tv_ID"
+            android:text="Loại Chi : "
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_loaiChi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_Ngaychi"
+            android:layout_toRightOf="@id/tvloai"
+            android:text="ddđ" />
+
+
+        <ImageView
+            android:id="@+id/ivDelete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/delete_button" />
+
+        <ImageView
+            android:id="@+id/ivEdit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/ivDelete"
+            android:src="@drawable/edit" />
+    </RelativeLayout>
+
+</LinearLayout>
