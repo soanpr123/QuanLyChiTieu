@@ -6,11 +6,11 @@
         android:color="#fff"
         android:dashWidth="0dp"
         android:dashGap="15dp" />
-<solid android:color="#fff"/>
+    <solid android:color="#fff"/>
     <corners
-        android:topLeftRadius="20dp"
-        android:topRightRadius="20dp"
-        android:bottomLeftRadius="20dp"
-        android:bottomRightRadius="20dp"/>
+        android:topLeftRadius="10dp"
+        android:topRightRadius="10dp"
+        android:bottomLeftRadius="10dp"
+        android:bottomRightRadius="10dp"/>
 
 </shape>

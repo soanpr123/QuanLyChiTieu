@@ -50,7 +50,7 @@ public class KhoanChiDAO {
         while (c.isAfterLast() == false) {
             KhoanChiMD ee = new KhoanChiMD();
             ee.setId(c.getInt(0));
-            ee.setTienChi(c.getString(1));
+            ee.setTienChi(c.getInt(1));
             ee.setLoaichi(c.getString(2));
             ee.setNgayChi(sdf.parse(c.getString(3)));
             khoanChiMDS.add(ee);
@@ -76,5 +76,53 @@ public class KhoanChiDAO {
         if (result == 0)
             return -1;
         return 1;
+    }
+    public int Tongkhoanchi(){
+        int khoanthungay=0;
+        String Sql="SELECT SUM(TienChi) AS 'tongtien' FROM KhoanChi ";
+        Cursor c = db.rawQuery(Sql, null);
+        c.moveToFirst();
+        while (c.isAfterLast()==false){
+            khoanthungay = c.getInt(0);
+            c.moveToNext();
+        }
+        c.close();
+        return khoanthungay;
+    }
+    public int Khoanchitheothang(String month,String yeah){
+        int khoanthuthang=0;
+        String Sql2="SELECT SUM(TienChi) AS 'tongtien' FROM KhoanChi where NgayChi LIKE'__-"+month+"-"+yeah+"' ";
+        Cursor c = db.rawQuery(Sql2, null);
+        c.moveToFirst();
+        while (c.isAfterLast()==false){
+            khoanthuthang = c.getInt(0);
+            c.moveToNext();
+        }
+        c.close();
+        return khoanthuthang;
+    }
+    public int getKhoanchiTheoNam(String yeah) {
+        int doanhThu = 0;
+        String sSQL = "SELECT SUM(TienChi) AS 'tongtien' FROM KhoanChi where NgayChi LIKE'__-__-" + yeah + "' ";
+        Cursor c = db.rawQuery(sSQL, null);
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            doanhThu = c.getInt(0);
+            c.moveToNext();
+        }
+        c.close();
+        return doanhThu;
+    }
+    public int getKhoanchiTheoNgay(String Day,String Month,String Yeah) {
+        int doanhThu = 0;
+        String sSQL = "SELECT SUM(TienChi) AS 'tongtien' FROM KhoanChi where NgayChi LIKE'"+Day+"-"+Month+"-"+Yeah+"'";
+        Cursor c = db.rawQuery(sSQL, null);
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            doanhThu = c.getInt(0);
+            c.moveToNext();
+        }
+        c.close();
+        return doanhThu;
     }
 }

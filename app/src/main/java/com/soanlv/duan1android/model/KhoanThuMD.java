@@ -4,16 +4,17 @@ import java.util.Date;
 
 public class KhoanThuMD {
     private int id;
-    private String TienThu,LoaiThu;
+    private String LoaiThu;
+    int TienThu;
     private Date NgayThu;
 
-    public KhoanThuMD(String tienThu, String loaiThu, Date ngayChi) {
+    public KhoanThuMD(int tienThu, String loaiThu, Date ngayChi) {
         TienThu = tienThu;
         LoaiThu = loaiThu;
         NgayThu = ngayChi;
     }
 
-    public KhoanThuMD(int id, String tienThu, String loaiThu, Date ngayChi) {
+    public KhoanThuMD(int id, int tienThu, String loaiThu, Date ngayChi) {
         this.id = id;
         TienThu = tienThu;
         LoaiThu = loaiThu;
@@ -31,11 +32,11 @@ public class KhoanThuMD {
         this.id = id;
     }
 
-    public String getTienThu() {
+    public int getTienThu() {
         return TienThu;
     }
 
-    public void setTienThu(String tienThu) {
+    public void setTienThu(int tienThu) {
         TienThu = tienThu;
     }
 

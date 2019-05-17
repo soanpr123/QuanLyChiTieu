@@ -9,7 +9,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -35,6 +38,7 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
     private LoginButton btn_login;
     Button logout;
+    private EditText username,Pass;
     ProfilePictureView image;
     CallbackManager callbackManager;
     String name, email;
@@ -48,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login_main);
         btn_login = findViewById(R.id.login_button);
+        username=findViewById(R.id.ed_username);
+        Pass=findViewById(R.id.ed_passs);
         image = findViewById(R.id.imgamefb);
         callbackManager = CallbackManager.Factory.create();
         try {
@@ -100,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     name = object.getString("name");
                     email = object.getString("email");
-//                    image.setProfileId(Profile.getCurrentProfile().getId());
+                    image.setProfileId(Profile.getCurrentProfile().getId());
                     Intent intent2 = new Intent(MainActivity.this, ManChinhActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("name", name);
@@ -129,5 +135,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         LoginManager.getInstance().logOut();
         super.onStart();
+    }
+
+    public void login(View view) {
+        String user=username.getText().toString();
+        String passs=Pass.getText().toString();
+        if (user.equals("admin")||passs.equals("admin")){
+            Intent intent2 = new Intent(MainActivity.this, ManChinhActivity.class);
+            startActivity(intent2);
+        }else {
+            Toast.makeText(MainActivity.this,"Sai",Toast.LENGTH_SHORT).show();
+        }
     }
 }

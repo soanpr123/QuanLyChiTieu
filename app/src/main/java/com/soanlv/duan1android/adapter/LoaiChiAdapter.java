@@ -10,9 +10,12 @@ import android.widget.TextView;
 
 import com.soanlv.duan1android.R;
 import com.soanlv.duan1android.database.KhoanChiDAO;
+import com.soanlv.duan1android.database.LoaiChiDAO;
 import com.soanlv.duan1android.model.KhoanChiMD;
+import com.soanlv.duan1android.model.KhoanThuMD;
 import com.soanlv.duan1android.model.LoaiCHiMD;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -21,14 +24,16 @@ public class LoaiChiAdapter extends BaseAdapter {
     public LayoutInflater inflater;
     List<LoaiCHiMD> arrLoaichi;
     KhoanChiDAO khoanChiDAO;
+    LoaiChiDAO loaiChiDAO;
     private KhoanChiMD khoanChiMD;
+    private LoaiCHiMD loaiCHiMD;
 
     public LoaiChiAdapter(List<LoaiCHiMD> arrLoaichi, Context context) {
         this.arrLoaichi = arrLoaichi;
         this.context = context;
         this.inflater =
                 (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        khoanChiDAO = new KhoanChiDAO(context);
+        loaiChiDAO = new LoaiChiDAO(context);
     }
     @Override
     public int getCount() {
@@ -50,7 +55,7 @@ public class LoaiChiAdapter extends BaseAdapter {
 
     }
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
@@ -65,7 +70,17 @@ public class LoaiChiAdapter extends BaseAdapter {
         LoaiCHiMD _entry = (LoaiCHiMD) arrLoaichi.get(position);
         holder.tv_id.setText(_entry.getId() + "");
         holder.tvloaichi.setText(_entry.getLoaiChi());
-
+holder.imgDelete.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        loaiCHiMD = new LoaiCHiMD();
+        loaiCHiMD = arrLoaichi.get(position);
+        loaiChiDAO.deleteLoaiChiByID(loaiCHiMD.getId());
+        arrLoaichi.clear();
+        arrLoaichi.addAll(loaiChiDAO.getAllLoaiChi());
+        notifyDataSetChanged();
+    }
+});
         return convertView;
     }
     @Override

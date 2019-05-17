@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_marginTop="8dp"
+    android:background="@color/colorPrimary"
+    android:layout_margin="10dp"
     android:layout_height="65dp">
 
     <RelativeLayout
@@ -28,7 +29,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_soTien"
+            android:id="@+id/tv_soTienChi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/tv_Sotien"
@@ -46,10 +47,10 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_Ngaychi"
+            android:id="@+id/tv_ItemNgaychi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_soTien"
+            android:layout_below="@id/tv_soTienChi"
             android:layout_toRightOf="@id/tvngay"
             android:text="ddđ" />
 
@@ -64,16 +65,16 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_loaiChi"
+            android:id="@+id/tv_itemLoaiChi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_Ngaychi"
+            android:layout_below="@id/tv_ItemNgaychi"
             android:layout_toRightOf="@id/tvloai"
             android:text="ddđ" />
 
 
         <ImageView
-            android:id="@+id/ivDelete"
+            android:id="@+id/ivDeleteLchi"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
@@ -82,12 +83,12 @@
             android:src="@drawable/delete_button" />
 
         <ImageView
-            android:id="@+id/ivEdit"
+            android:id="@+id/ivEditLchi"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerInParent="true"
             android:layout_marginRight="15dp"
-            android:layout_toLeftOf="@+id/ivDelete"
+            android:layout_toLeftOf="@+id/ivDeleteLchi"
             android:src="@drawable/edit" />
     </RelativeLayout>
 

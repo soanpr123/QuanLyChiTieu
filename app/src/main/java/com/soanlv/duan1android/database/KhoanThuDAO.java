@@ -50,7 +50,7 @@ public class KhoanThuDAO {
         while (c.isAfterLast() == false) {
             KhoanThuMD ee = new KhoanThuMD();
             ee.setId(c.getInt(0));
-            ee.setTienThu(c.getString(1));
+            ee.setTienThu(c.getInt(1));
             ee.setLoaiThu(c.getString(2));
             ee.setNgayThu(sdf.parse(c.getString(3)));
             khoanThuMDS.add(ee);
@@ -77,5 +77,56 @@ public class KhoanThuDAO {
             return -1;
         return 1;
     }
-   
+
+    public int TongKhoanthu() {
+        int khoanthungay = 0;
+        String Sql = "SELECT SUM(TienThu) AS 'tongtienthu' FROM KHOANTHU ";
+        Cursor c = db.rawQuery(Sql, null);
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            khoanthungay = c.getInt(0);
+            c.moveToNext();
+        }
+        c.close();
+        return khoanthungay;
+    }
+
+    public int getKhoanthuthang(String month, String yeah) {
+        int khoanthuthang = 0;
+        String Sql2 = "SELECT SUM(TienThu) AS 'tongtienthu' FROM KHOANTHU where NgayThu LIKE'__-" + month + "-" + yeah + "' ";
+        Cursor c = db.rawQuery(Sql2, null);
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            khoanthuthang = c.getInt(0);
+            c.moveToNext();
+        }
+        c.close();
+        return khoanthuthang;
+    }
+
+    public int getKhoanThuTheoNam(String yeah) {
+        int doanhThu = 0;
+        String sSQL = "SELECT SUM(TienThu) AS 'tongtienthu' FROM KHOANTHU where NgayThu LIKE'__-__-" + yeah + "' ";
+        Cursor c = db.rawQuery(sSQL, null);
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            doanhThu = c.getInt(0);
+            c.moveToNext();
+        }
+        c.close();
+        return doanhThu;
+    }
+
+    public int getKhoanThuTheoNgay(String Day, String Month, String Yeah) {
+        int doanhThu = 0;
+        String sSQL = "SELECT SUM(TienThu) AS 'tongtienthu' FROM KHOANTHU where NgayThu LIKE'" + Day + "-" + Month + "-" + Yeah + "'";
+        Cursor c = db.rawQuery(sSQL, null);
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            doanhThu = c.getInt(0);
+            c.moveToNext();
+        }
+        c.close();
+        return doanhThu;
+    }
 }

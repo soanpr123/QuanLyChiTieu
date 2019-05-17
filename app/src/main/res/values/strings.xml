@@ -6,11 +6,11 @@
 
     <string name="facebook_app_id">1191868327633091</string>
     <string name="fb_login_protocol_scheme">fb1191868327633091</string>
-    <string name="title_activity_man_chinh">ManChinhActivity</string>
+    <string name="title_activity_man_chinh">Quản Lý Chi Tiêu</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Welcome</string>
+    <string name="nav_header_subtitle">Hãy Quản lý Chi tiêu một cách hợp lý</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_khoan_thu">KhoanThuActivity</string>

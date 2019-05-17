@@ -61,7 +61,7 @@ public class LoaiThuDAO {
     }
 
     //deleete
-    public int deleteLoaiChiByID(int id) {
+    public int deleteLoaithuByID(int id) {
         int result = db.delete(TABLE_NAME, "id=?", new String[]{String.valueOf(id)});
         if (result == 0)
             return -1;

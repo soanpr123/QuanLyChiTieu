@@ -16,13 +16,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.soanlv.duan1android.R;
-import com.soanlv.duan1android.adapter.KhoanChiAdapter;
 import com.soanlv.duan1android.adapter.LoaiChiAdapter;
-import com.soanlv.duan1android.database.KhoanChiDAO;
 import com.soanlv.duan1android.database.LoaiChiDAO;
 import com.soanlv.duan1android.model.LoaiCHiMD;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 

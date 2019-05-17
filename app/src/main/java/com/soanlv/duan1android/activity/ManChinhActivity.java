@@ -1,26 +1,27 @@
 package com.soanlv.duan1android.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.soanlv.duan1android.R;
+import com.soanlv.duan1android.ThongkeKhoanThu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,7 @@ public class ManChinhActivity extends AppCompatActivity
     TabLayout tabLayout;
     ViewPager viewPager;
     String Name, Email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,7 @@ public class ManChinhActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
+
         name = findViewById(R.id.nameAVT);
         email = findViewById(R.id.emailAVT);
         Intent intent = getIntent();
@@ -54,6 +57,9 @@ public class ManChinhActivity extends AppCompatActivity
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         tabLayout.setVisibility(View.INVISIBLE);
+        setupViewPaper3(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setVisibility(View.VISIBLE);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -81,11 +87,13 @@ public class ManChinhActivity extends AppCompatActivity
         viewPager.setOffscreenPageLimit(2);
 
     }
+
     public void setupViewPaper3(ViewPager viewPager) {
         ManChinhActivity.ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        pagerAdapter.addFrangment2(new ThongKe(), "Thống Kê");
+        pagerAdapter.addFrangment2(new ThongKe(), "Khoản Chi");
+        pagerAdapter.addFrangment2(new ThongkeKhoanThu(), "Khoản Thu");
         viewPager.setAdapter(pagerAdapter);
-        viewPager.setOffscreenPageLimit(1);
+        viewPager.setOffscreenPageLimit(2);
     }
 
     class ViewPagerAdapter extends FragmentStatePagerAdapter {
@@ -116,6 +124,7 @@ public class ManChinhActivity extends AppCompatActivity
             mFragmentList.add(fragment);
             mFragmentTitleList.add(tile);
         }
+
         public void addFrangment3(Fragment fragment, String tile) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(tile);
@@ -169,10 +178,10 @@ public class ManChinhActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-
             setupViewPager(viewPager);
             tabLayout.setupWithViewPager(viewPager);
             tabLayout.setVisibility(View.VISIBLE);
+
         } else if (id == R.id.nav_gallery) {
             setupViewPaper2(viewPager);
             tabLayout.setupWithViewPager(viewPager);
@@ -181,9 +190,28 @@ public class ManChinhActivity extends AppCompatActivity
             setupViewPaper3(viewPager);
             tabLayout.setupWithViewPager(viewPager);
             tabLayout.setVisibility(View.VISIBLE);
-            } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
+            final AlertDialog.Builder bul = new AlertDialog.Builder(this);
+            bul.setTitle("Thoát");
+            bul.setMessage("Bạn có muốn tiếp tiếp tục");
+            bul.setPositiveButton("có", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            bul.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+
+                }
+            });
+            //hiển thị
+            bul.show();
+
 
         }
 

@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@drawable/backgroud"
     android:gravity="center"
+    android:orientation="vertical"
     android:padding="15dp"
     tools:context=".activity.MainActivity">
+
     <com.facebook.login.widget.ProfilePictureView
         android:id="@+id/imgamefb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
+
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
@@ -20,4 +22,35 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp" />
+
+    <EditText
+
+        android:id="@+id/ed_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/boder_ed"
+        android:hint="username"
+        android:padding="5dp"
+        android:text="admin"
+        android:textColor="#fff" />
+
+    <EditText
+        android:id="@+id/ed_passs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/boder_ed"
+        android:hint="password"
+        android:inputType="textPassword"
+        android:padding="5dp"
+        android:text="admin"
+        android:textColor="#fff" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/botron"
+        android:onClick="login"
+        android:text="login" />
 </LinearLayout>

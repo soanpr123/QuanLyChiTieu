@@ -10,10 +10,10 @@
     <!--android:layout_width="wrap_content"-->
     <!--android:layout_height="wrap_content"-->
     <!--android:text="Khoản chi"/>-->
-    <ListView
-        android:id="@+id/lv_khoanchi"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_khoanchi"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabkchi"
         android:layout_alignParentBottom="true"
@@ -22,5 +22,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:src="@drawable/ic_add_black_24dp" />
 </RelativeLayout>

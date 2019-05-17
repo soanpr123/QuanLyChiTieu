@@ -1,6 +1,7 @@
-package com.soanlv.duan1android.activity;
+package com.soanlv.duan1android;
 
-
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,8 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.soanlv.duan1android.R;
 import com.soanlv.duan1android.database.KhoanChiDAO;
+import com.soanlv.duan1android.database.KhoanThuDAO;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -20,16 +21,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ThongKe extends Fragment {
+public class ThongkeKhoanThu extends Fragment {
     TextView tv_tong, tv_day, tv_month, tv_yeah;
     Spinner sp_ngay, sp_thang, sp_nam;
     private List<String> arrngay = new ArrayList<>();
     private List<String> arrthang = new ArrayList<>();
-    private List<String> arrnam = new ArrayList<>();
+    private List<String > arrnam = new ArrayList<>();
     ArrayAdapter<String> adapter;
-    KhoanChiDAO khoanChiDAO;
+    KhoanThuDAO khoanThuDAO;
 
-    public ThongKe() {
+    public ThongkeKhoanThu() {
 
     }
 
@@ -37,16 +38,16 @@ public class ThongKe extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.thong_ke_activity, container, false);
-        tv_tong = view.findViewById(R.id.tv_tongSoTien);
-        tv_day = view.findViewById(R.id.tv_ngay);
-        tv_month = view.findViewById(R.id.tv_thang);
-        tv_yeah = view.findViewById(R.id.tv_nam);
-        sp_ngay = view.findViewById(R.id.day);
-        sp_thang = view.findViewById(R.id.month);
-        sp_nam = view.findViewById(R.id.yeah);
-        khoanChiDAO = new KhoanChiDAO(getActivity());
-        int number = khoanChiDAO.Tongkhoanchi();
+        View view = inflater.inflate(R.layout.fragment_thongke_khoan_thu, container, false);
+        tv_tong = view.findViewById(R.id.tv_tongSoTienThu);
+        tv_day = view.findViewById(R.id.tv_ngay_thu);
+        tv_month = view.findViewById(R.id.tv_thang_thu);
+        tv_yeah = view.findViewById(R.id.tv_nam_thu);
+        sp_ngay = view.findViewById(R.id.day_thu);
+        sp_thang = view.findViewById(R.id.month_thu);
+        sp_nam = view.findViewById(R.id.yeah_thu);
+        khoanThuDAO = new KhoanThuDAO(getActivity());
+        int number = khoanThuDAO.TongKhoanthu();
         NumberFormat formatter = new DecimalFormat("###,###");
         String resp = formatter.format(number);
         tv_tong.setText("Tổng Tiền Đã Chi Tiêu:  " + resp + " VND");
@@ -71,7 +72,7 @@ public class ThongKe extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String yeah = arrnam.get(position);
-                int number = khoanChiDAO.getKhoanchiTheoNam(yeah);
+                int number = khoanThuDAO.getKhoanThuTheoNam(yeah);
                 NumberFormat formatter = new DecimalFormat("###,###");
                 String resp = formatter.format(number);
                 tv_yeah.setText("Khoản Chi Theo Năm " + yeah + " Là: " + resp + " VND");
@@ -106,7 +107,7 @@ public class ThongKe extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String ngay = arrthang.get(position);
                 String yeah = (String) sp_nam.getSelectedItem();
-                int number = khoanChiDAO.Khoanchitheothang(ngay, yeah);
+                int number = khoanThuDAO.getKhoanthuthang(ngay, yeah);
                 NumberFormat formatter = new DecimalFormat("###,###");
                 String resp = formatter.format(number);
                 tv_month.setText("Khoản Chi Theo Tháng " + ngay + " Năm " + yeah + "  Là: " + resp + " VND");
@@ -162,7 +163,7 @@ public class ThongKe extends Fragment {
                 String ngay = arrngay.get(position);
                 String month = (String) sp_thang.getSelectedItem();
                 String yeah = (String) sp_nam.getSelectedItem();
-                int number = khoanChiDAO.getKhoanchiTheoNgay(ngay, month, yeah);
+                int number = khoanThuDAO.getKhoanThuTheoNgay(ngay, month, yeah);
                 NumberFormat formatter = new DecimalFormat("###,###");
                 String resp = formatter.format(number);
                 tv_day.setText("Khoản Chi Theo Ngày " + ngay + "Là: " + resp + " VND");

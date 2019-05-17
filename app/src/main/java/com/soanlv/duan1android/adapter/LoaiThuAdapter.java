@@ -10,7 +10,9 @@ import android.widget.TextView;
 
 import com.soanlv.duan1android.R;
 import com.soanlv.duan1android.database.KhoanThuDAO;
+import com.soanlv.duan1android.database.LoaiThuDAO;
 import com.soanlv.duan1android.model.KhoanThuMD;
+import com.soanlv.duan1android.model.LoaiCHiMD;
 import com.soanlv.duan1android.model.LoaiThuMD;
 
 import java.util.List;
@@ -21,13 +23,15 @@ public class LoaiThuAdapter extends BaseAdapter {
     List<LoaiThuMD> arrloaithu;
     KhoanThuDAO khoanThuDAO;
     private KhoanThuMD khoanThuMD;
+    private LoaiThuMD loaiThuMD;
+    private LoaiThuDAO loaiThuDAO ;
 
     public LoaiThuAdapter(List<LoaiThuMD> arrLoaichi, Context context) {
         this.arrloaithu = arrLoaichi;
         this.context = context;
         this.inflater =
                 (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        khoanThuDAO = new KhoanThuDAO(context);
+        loaiThuDAO = new LoaiThuDAO(context);
     }
 
     @Override
@@ -52,7 +56,7 @@ public class LoaiThuAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
@@ -67,7 +71,17 @@ public class LoaiThuAdapter extends BaseAdapter {
         LoaiThuMD _entry = (LoaiThuMD) arrloaithu.get(position);
         holder.tv_id.setText(_entry.getId() + "");
         holder.tvloaithu.setText(_entry.getLoaiThu());
-
+        holder.imgDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loaiThuMD = new LoaiThuMD();
+                loaiThuMD = arrloaithu.get(position);
+                loaiThuDAO.deleteLoaithuByID(loaiThuMD.getId());
+                arrloaithu.clear();
+                arrloaithu.addAll(loaiThuDAO.getAllLoaiThu());
+                notifyDataSetChanged();
+            }
+        });
         return convertView;
     }
 

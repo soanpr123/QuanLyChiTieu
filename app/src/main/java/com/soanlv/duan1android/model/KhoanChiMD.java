@@ -4,16 +4,17 @@ import java.util.Date;
 
 public class KhoanChiMD {
     private int id;
-    private String TienChi,Loaichi;
+    private String Loaichi;
+    private int TienChi;
     private Date NgayChi;
 
-    public KhoanChiMD(String tienChi, String loaichi, Date ngayChi) {
-        TienChi = tienChi;
+    public KhoanChiMD(int tienChi, String loaichi, Date ngayChi) {
         Loaichi = loaichi;
+        TienChi = tienChi;
         NgayChi = ngayChi;
     }
 
-    public KhoanChiMD(int id, String tienChi, String loaichi, Date ngayChi) {
+    public KhoanChiMD(int id, int tienChi, String loaichi, Date ngayChi) {
         this.id = id;
         TienChi = tienChi;
         Loaichi = loaichi;
@@ -40,13 +41,12 @@ public class KhoanChiMD {
         return id;
     }
 
-    public String getTienChi() {
+    public int getTienChi() {
         return TienChi;
     }
 
-    public String setTienChi(String tienChi) {
+    public void setTienChi(int tienChi) {
         TienChi = tienChi;
-        return tienChi;
     }
 
     public Date getNgayChi() {

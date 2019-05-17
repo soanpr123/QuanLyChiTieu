@@ -21,7 +21,7 @@
             android:id="@+id/ed_LOaiTHu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nhập Loại CHi" />
+            android:hint="Nhập Loại Thu" />
     </android.support.design.widget.TextInputLayout>
 
 </LinearLayout>
